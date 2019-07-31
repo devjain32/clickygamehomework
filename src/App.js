@@ -8,8 +8,7 @@ import "./App.css";
 class App extends React.Component {
 state = {
     pictures,
-    score: 0,
-    newArray: []
+    score: 0
 }
 
 componentDidMount() {
