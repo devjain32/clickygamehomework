@@ -18,27 +18,27 @@ componentDidMount() {
 
 randomFunc = () => {
     console.log("here in random")
-    // var array = this.state.pictures
-    // var currentIndex = array.length;
-    // var temporaryValue, randomIndex;
+    var array = this.state.pictures
+    var currentIndex = array.length;
+    var temporaryValue, randomIndex;
 
-    // while (0 !== currentIndex) {
-    //     randomIndex = Math.floor(Math.random() * currentIndex);
-    //     currentIndex -= 1;
+    while (0 !== currentIndex) {
+        randomIndex = Math.floor(Math.random() * currentIndex);
+        currentIndex -= 1;
 
-    //     temporaryValue = array[currentIndex];
-    //     array[currentIndex] = array[randomIndex];
-    //     array[randomIndex] = temporaryValue;
-    // }
-    // this.select(array);
-    var array = [];
-    var pics = this.state.pictures
-    for (let i = pics.length - 1; i > 0; i--) {
-        let j = Math.floor(Math.random() * (i + 1));
-        [pics[i], pics[j]] = [array[j], array[i]];
-      }
-    console.log(array);
+        temporaryValue = array[currentIndex];
+        array[currentIndex] = array[randomIndex];
+        array[randomIndex] = temporaryValue;
+    }
     this.select(array);
+    // var array = [];
+    // var pics = this.state.pictures
+    // for (let i = pics.length - 1; i > 0; i--) {
+    //     let j = Math.floor(Math.random() * (i + 1));
+    //     [pics[i], pics[j]] = [array[j], array[i]];
+    //   }
+    // console.log(array);
+    // this.select(array);
 }
 
 select = (array) => {
@@ -66,6 +66,15 @@ handleStatus = (id, name) => {
             this.setState({ score: this.state.score + 1 });
             pictures[id - 1].isClicked = true;
             console.log(`You clicked on ${name}.`)
+            if (this.state.score === 12) {
+              var p = window.confirm("You won! Click OK to play again.")
+              if (p === true) {
+                window.location.reload()
+              }
+              else {
+                alert("Thank you for playing!")
+              }
+            }
         }
     }
 
@@ -74,7 +83,7 @@ handleStatus = (id, name) => {
         <div>
       <Header />
       <div className = "scoreMain">
-            score: <span className = "score">{this.state.score}</span>/40
+            score: <span className = "score">{this.state.score}</span>/12
       </div>
 
       <Wrapper>
